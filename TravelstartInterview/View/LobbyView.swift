@@ -8,13 +8,36 @@
 
 import UIKit
 
+protocol LobbyViewDelegate: AnyObject, UITableViewDelegate, UITableViewDataSource {
+    
+    
+}
+
 class LobbyView: UIView {
     
-    @IBOutlet weak var LobbyTableView: UITableView!
+    @IBOutlet weak var lobbyTableView: UITableView! {
+        
+        didSet {
+            
+            lobbyTableView.delegate = self.delegate
+            
+            lobbyTableView.dataSource = self.delegate
+        }
+    }
+    
+    weak var delegate: LobbyViewDelegate?
     
     override func awakeFromNib() {
        super.awakeFromNib()
    
    }
+    
+    func reloadData() {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.lobbyTableView.reloadData()
+        }
+    }
 
 }

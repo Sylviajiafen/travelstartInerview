@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="231" id="ZF5-DH-uhD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LobbyTableViewCell" rowHeight="231" id="ZF5-DH-uhD" customClass="LobbyTableViewCell" customModule="TravelstartInterview" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="231"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZF5-DH-uhD" id="DgD-Hd-L3l">
@@ -40,12 +40,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
-                            <outlet property="LobbyTableView" destination="j9e-OG-D4g" id="MN8-kg-s8U"/>
+                            <outlet property="lobbyTableView" destination="j9e-OG-D4g" id="cIZ-Sh-oxP"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="HX1-Bg-yym"/>
                     <connections>
-                        <outlet property="LobbyView" destination="8bC-Xf-vdC" id="cC4-F9-YmC"/>
+                        <outlet property="lobbyView" destination="8bC-Xf-vdC" id="zbi-bA-Ive"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -10,12 +10,26 @@ import UIKit
 
 class LobbyViewController: UIViewController {
 
-    @IBOutlet var LobbyView: LobbyView!
+    @IBOutlet var lobbyView: LobbyView! {
+        
+        didSet {
+            
+            lobbyView.delegate = self
+        }
+    }
+    
+    var datas = [Results]() {
+        
+        didSet {
+            
+            lobbyView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataManager.shared.fetchData { (result) in
+        DataManager.shared.fetchData { [weak self] (result) in
             
             switch result {
                 
@@ -25,6 +39,9 @@ class LobbyViewController: UIViewController {
                 print(result.result.results[0].info)
                 print(result.result.results[0].title)
                 print(result.result.results[0].description)
+                print(result.result.results[0].file)
+                
+                self?.datas = result.result.results
                 
             case .failure(let error):
                 
@@ -33,15 +50,24 @@ class LobbyViewController: UIViewController {
             }
         }
     }
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension LobbyViewController: LobbyViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return datas.count
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LobbyTableViewCell.self), for: indexPath)
+        
+        guard let lobbyCell = cell as? LobbyTableViewCell else { return UITableViewCell() }
+        
+        return lobbyCell
+    }
+    
+    
+    
 }
