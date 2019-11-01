@@ -10,6 +10,8 @@ import UIKit
 
 class LobbyViewController: UIViewController {
 
+    @IBOutlet var LobbyView: LobbyView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

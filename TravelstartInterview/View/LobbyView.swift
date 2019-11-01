@@ -10,6 +10,8 @@ import UIKit
 
 class LobbyView: UIView {
     
+    @IBOutlet weak var LobbyTableView: UITableView!
+    
     override func awakeFromNib() {
        super.awakeFromNib()
    
