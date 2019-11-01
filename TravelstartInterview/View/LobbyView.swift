@@ -10,26 +10,29 @@ import UIKit
 
 protocol LobbyViewDelegate: AnyObject, UITableViewDelegate, UITableViewDataSource {
     
-    
+    func triggerRefresh(_ view: LobbyView)
 }
 
 class LobbyView: UIView {
     
-    @IBOutlet weak var lobbyTableView: UITableView! {
+    @IBOutlet weak var lobbyTableView: UITableView!
+        
+    weak var delegate: LobbyViewDelegate? {
         
         didSet {
             
-            lobbyTableView.delegate = self.delegate
+            guard let tableView = lobbyTableView else { return }
             
-            lobbyTableView.dataSource = self.delegate
+            tableView.delegate = self.delegate
+            
+            tableView.dataSource = self.delegate
+            
+            self.delegate?.triggerRefresh(self)
         }
     }
     
-    weak var delegate: LobbyViewDelegate?
-    
     override func awakeFromNib() {
        super.awakeFromNib()
-   
    }
     
     func reloadData() {

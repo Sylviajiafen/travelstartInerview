@@ -28,6 +28,9 @@ class LobbyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func fetchData() {
         
         DataManager.shared.fetchData { [weak self] (result) in
             
@@ -54,6 +57,11 @@ class LobbyViewController: UIViewController {
 
 extension LobbyViewController: LobbyViewDelegate {
     
+    func triggerRefresh(_ view: LobbyView) {
+        
+        fetchData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return datas.count
@@ -65,7 +73,31 @@ extension LobbyViewController: LobbyViewDelegate {
         
         guard let lobbyCell = cell as? LobbyTableViewCell else { return UITableViewCell() }
         
+        lobbyCell.layout(by: datas[indexPath.row])
+        
+        lobbyCell.delegate = self
+        
         return lobbyCell
+    }
+    
+}
+
+extension LobbyViewController: LobbyTableViewCellDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return datas.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let item = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCollectionViewCell.self), for: indexPath)
+        
+        guard let imageItem = item as? ImageCollectionViewCell else { return UICollectionViewCell() }
+        
+        imageItem.layout(by: datas[indexPath.row])
+        
+        return imageItem
     }
     
     

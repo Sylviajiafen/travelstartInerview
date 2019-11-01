@@ -8,8 +8,46 @@
 
 import UIKit
 
+protocol LobbyTableViewCellDelegate: AnyObject,
+UICollectionViewDelegate, UICollectionViewDataSource {
+    
+}
+
 class LobbyTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var title: UILabel!
+    
+    @IBOutlet weak var placeDescription: UITextView!
+    
+    @IBOutlet weak var imageCollectionView: UICollectionView! {
+        
+        didSet {
+            
+            imageCollectionView.delegate = self.delegate
+            
+            imageCollectionView.dataSource = self.delegate
+        }
+    }
+    
+    weak var delegate: LobbyTableViewCellDelegate? {
+        
+        didSet {
+            
+            guard let collectionView = imageCollectionView else { return }
+            
+            collectionView.delegate = self.delegate
+            
+            collectionView.dataSource = self.delegate
+        }
+    }
+    
+    func layout(by data: Results) {
+        
+        title.text = data.title
+        
+        placeDescription.text = data.description
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
