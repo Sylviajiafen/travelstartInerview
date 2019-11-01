@@ -48,31 +48,35 @@
                                                     </constraints>
                                                 </view>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="中文" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6Z-Yl-1IX">
-                                                    <rect key="frame" x="16" y="47" width="340" height="37"/>
+                                                    <rect key="frame" x="16" y="47" width="340" height="192"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="PingFangTC-Light" family="PingFang TC" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kpD-kk-3os">
-                                                    <rect key="frame" x="16" y="100" width="359" height="269"/>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kpD-kk-3os">
+                                                    <rect key="frame" x="16" y="249" width="359" height="120"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="taf-BK-RiB">
-                                                        <size key="itemSize" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="120" id="AVo-1j-BAC"/>
+                                                    </constraints>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="taf-BK-RiB">
+                                                        <size key="itemSize" width="150" height="100"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCollectionViewCell" id="iVf-jo-CX5" customClass="ImageCollectionViewCell" customModule="TravelstartInterview" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="26" height="20"/>
+                                                            <rect key="frame" x="0.0" y="10" width="150" height="100"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="43f-k9-ZSS">
-                                                                <rect key="frame" x="0.0" y="0.0" width="26" height="20"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="A4U-Db-ijM">
-                                                                        <rect key="frame" x="0.0" y="0.5" width="26" height="18"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A4U-Db-ijM">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                                                        <color key="backgroundColor" systemColor="quaternaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <constraints>
@@ -102,7 +106,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="hOI-cU-DUx" secondAttribute="bottom" id="r81-qA-nFt"/>
                                                 <constraint firstItem="yY2-IE-qe8" firstAttribute="leading" secondItem="DgD-Hd-L3l" secondAttribute="leading" constant="16" id="t6F-Ip-s98"/>
                                                 <constraint firstAttribute="trailing" secondItem="kpD-kk-3os" secondAttribute="trailing" id="wCV-j6-cz3"/>
-                                                <constraint firstItem="kpD-kk-3os" firstAttribute="top" secondItem="T6Z-Yl-1IX" secondAttribute="bottom" constant="16" id="wWu-Vw-Z1N"/>
+                                                <constraint firstItem="kpD-kk-3os" firstAttribute="top" secondItem="T6Z-Yl-1IX" secondAttribute="bottom" constant="10" id="wWu-Vw-Z1N"/>
                                                 <constraint firstItem="hOI-cU-DUx" firstAttribute="leading" secondItem="DgD-Hd-L3l" secondAttribute="leading" id="wbv-mo-WW6"/>
                                                 <constraint firstItem="kpD-kk-3os" firstAttribute="leading" secondItem="DgD-Hd-L3l" secondAttribute="leading" constant="16" id="yHB-h3-NRn"/>
                                             </constraints>
@@ -162,7 +166,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="folder.badge.plus" catalog="system" width="64" height="44"/>
-    </resources>
 </document>

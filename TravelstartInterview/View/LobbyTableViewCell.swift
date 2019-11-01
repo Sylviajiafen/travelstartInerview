@@ -8,36 +8,21 @@
 
 import UIKit
 
-protocol LobbyTableViewCellDelegate: AnyObject,
-UICollectionViewDelegate, UICollectionViewDataSource {
-    
-}
-
 class LobbyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var title: UILabel!
     
     @IBOutlet weak var placeDescription: UITextView!
     
-    @IBOutlet weak var imageCollectionView: UICollectionView! {
-        
-        didSet {
-            
-            imageCollectionView.delegate = self.delegate
-            
-            imageCollectionView.dataSource = self.delegate
-        }
-    }
+    @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    weak var delegate: LobbyTableViewCellDelegate? {
+    var imageData = [String]() {
         
         didSet {
             
-            guard let collectionView = imageCollectionView else { return }
+            print("=========check image url: \(imageData.count)========")
             
-            collectionView.delegate = self.delegate
-            
-            collectionView.dataSource = self.delegate
+            print(imageData)
         }
     }
     
@@ -50,6 +35,10 @@ class LobbyTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        imageCollectionView.dataSource = self
+        
+        imageCollectionView.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -57,4 +46,41 @@ class LobbyTableViewCell: UITableViewCell {
 
     }
 
+}
+
+extension LobbyTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return imageData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let item = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCollectionViewCell.self), for: indexPath)
+        
+        guard let imageItem = item as? ImageCollectionViewCell else { return UICollectionViewCell() }
+        
+        print("====image data=====")
+        print(imageData[indexPath.row])
+        
+        imageItem.layout(by: imageData[indexPath.row])
+        
+        return imageItem
+    }
+    
+}
+
+extension LobbyTableViewCell: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let screenSize = UIScreen.main.bounds.size
+        
+        let width = (screenSize.width - 26) / 2.0
+        
+        let height = width / 1.5
+        
+        return CGSize(width: width, height: height)
+    }
 }

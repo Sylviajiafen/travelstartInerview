@@ -12,8 +12,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var spotImage: UIImageView!
     
-    func layout(by data: Results) {
+    func layout(by data: String) {
         
+        spotImage.loadImage(data)
         
     }
 }

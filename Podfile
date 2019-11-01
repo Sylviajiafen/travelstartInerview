@@ -6,6 +6,8 @@ target 'TravelstartInterview' do
   use_frameworks!
 
   # Pods for TravelstartInterview
+  
+  pod 'Kingfisher'
 
   target 'TravelstartInterviewTests' do
     inherit! :search_paths

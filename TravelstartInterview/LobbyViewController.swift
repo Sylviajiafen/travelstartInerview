@@ -53,6 +53,7 @@ class LobbyViewController: UIViewController {
             }
         }
     }
+    
 }
 
 extension LobbyViewController: LobbyViewDelegate {
@@ -75,31 +76,10 @@ extension LobbyViewController: LobbyViewDelegate {
         
         lobbyCell.layout(by: datas[indexPath.row])
         
-        lobbyCell.delegate = self
+        lobbyCell.imageData = FileSeparator.shared.reorder(datas[indexPath.row].file)
         
         return lobbyCell
     }
     
 }
 
-extension LobbyViewController: LobbyTableViewCellDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return datas.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let item = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCollectionViewCell.self), for: indexPath)
-        
-        guard let imageItem = item as? ImageCollectionViewCell else { return UICollectionViewCell() }
-        
-        imageItem.layout(by: datas[indexPath.row])
-        
-        return imageItem
-    }
-    
-    
-    
-}

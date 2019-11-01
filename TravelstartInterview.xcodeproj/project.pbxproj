@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		03689FEB236C9F99008748D4 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03689FEA236C9F99008748D4 /* ImageCollectionViewCell.swift */; };
+		03689FED236CAEFC008748D4 /* FileSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03689FEC236CAEFC008748D4 /* FileSeparator.swift */; };
+		03689FEF236CB9D2008748D4 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03689FEE236CB9D2008748D4 /* KingFisherWrapper.swift */; };
 		037C867B23691FDE0095AF57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C867A23691FDE0095AF57 /* AppDelegate.swift */; };
 		037C867D23691FDE0095AF57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C867C23691FDE0095AF57 /* SceneDelegate.swift */; };
 		037C868223691FDE0095AF57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 037C868023691FDE0095AF57 /* Main.storyboard */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		03689FEA236C9F99008748D4 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		03689FEC236CAEFC008748D4 /* FileSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSeparator.swift; sourceTree = "<group>"; };
+		03689FEE236CB9D2008748D4 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		037C867723691FDE0095AF57 /* TravelstartInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelstartInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		037C867A23691FDE0095AF57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		037C867C23691FDE0095AF57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 		037C867923691FDE0095AF57 /* TravelstartInterview */ = {
 			isa = PBXGroup;
 			children = (
+				03689FEE236CB9D2008748D4 /* KingFisherWrapper.swift */,
 				03FF1865236C3937000E700C /* Extension */,
 				037C86AA236C2BAB0095AF57 /* View */,
 				037C86A1236922190095AF57 /* Model */,
@@ -145,6 +150,7 @@
 				037C86A2236922320095AF57 /* DataManager.swift */,
 				037C86A42369303B0095AF57 /* HTTPClient.swift */,
 				037C86A8236C1FCF0095AF57 /* DataObject.swift */,
+				03689FEC236CAEFC008748D4 /* FileSeparator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,6 +204,7 @@
 				037C867323691FDE0095AF57 /* Sources */,
 				037C867423691FDE0095AF57 /* Frameworks */,
 				037C867523691FDE0095AF57 /* Resources */,
+				42DF6AD510177D2E59B85AE1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -286,6 +293,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		42DF6AD510177D2E59B85AE1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TravelstartInterview/Pods-TravelstartInterview-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TravelstartInterview/Pods-TravelstartInterview-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TravelstartInterview/Pods-TravelstartInterview-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		69E372B2E42DE87A04E98B50 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,8 +366,10 @@
 				037C86A7236C1CE20095AF57 /* Bundle+Extension.swift in Sources */,
 				037C86AC236C2BCD0095AF57 /* LobbyView.swift in Sources */,
 				037C86A3236922320095AF57 /* DataManager.swift in Sources */,
+				03689FEF236CB9D2008748D4 /* KingFisherWrapper.swift in Sources */,
 				037C86A52369303B0095AF57 /* HTTPClient.swift in Sources */,
 				037C86A9236C1FCF0095AF57 /* DataObject.swift in Sources */,
+				03689FED236CAEFC008748D4 /* FileSeparator.swift in Sources */,
 				03FF1867236C3A1C000E700C /* LobbyTableViewCell.swift in Sources */,
 				037C867D23691FDE0095AF57 /* SceneDelegate.swift in Sources */,
 				037C869D2369209C0095AF57 /* LobbyViewController.swift in Sources */,
