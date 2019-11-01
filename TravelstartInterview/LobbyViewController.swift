@@ -12,19 +12,26 @@ class LobbyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let request = HTTPRequest(scheme: "https",
-                                  host: "data.taipei",
-                                  path: "/datalist/apiAccess",
-                                  queryItems: [
-                                    URLQueryItem(name: "scope", value: "resourceAquire"),
-                                    URLQueryItem(name: "rid", value: "36847f3f-deff-4183-a5bb-800737591de5")])
         
-        HTTPClient.shared.request(request) { (result) in
-            <#code#>
+        DataManager.shared.fetchData { (result) in
+            
+            switch result {
+                
+            case .success(let result):
+                
+                print("======DATA==========")
+                print(result.result.results[0].info)
+                print(result.result.results[0].title)
+                print(result.result.results[0].description)
+                
+            case .failure(let error):
+                
+                print("=====ERROR!!!======")
+                print(error.localizedDescription)
+            }
         }
-        
     }
+
     /*
     // MARK: - Navigation
 

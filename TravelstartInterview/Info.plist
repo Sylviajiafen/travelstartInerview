@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>TaipeiTravelHost</key>
+	<string>data.taipei</string>
+	<key>TaipeiTravelPath</key>
+	<string>/opendata/datalist/apiAccess</string>
+	<key>TaipeiTravelQueryRid</key>
+	<string>36847f3f-deff-4183-a5bb-800737591de5</string>
+	<key>TaipeiTravelQueryScope</key>
+	<string>resourceAquire</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
