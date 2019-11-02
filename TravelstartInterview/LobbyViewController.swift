@@ -26,6 +26,8 @@ class LobbyViewController: UIViewController {
         }
     }
     
+    var currentTitle: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -54,6 +56,26 @@ class LobbyViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == Segue.detail {
+
+            guard let destination = segue.destination
+                as? DetailViewController else { return }
+            
+            destination.navigationItem.title = currentTitle
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationItem.title = "台北市熱門景點"
+    }
+    
+    private struct Segue {
+        
+        static let detail = "showDetail"
+    }
 }
 
 extension LobbyViewController: LobbyViewDelegate {
@@ -78,8 +100,16 @@ extension LobbyViewController: LobbyViewDelegate {
         
         lobbyCell.imageData = FileSeparator.shared.reorder(datas[indexPath.row].file)
         
+        lobbyCell.segueTrigger = { [weak self] in
+            
+            guard let strongSelf = self else { return }
+            
+            strongSelf.currentTitle = strongSelf.datas[indexPath.row].title
+            
+            strongSelf.performSegue(withIdentifier: Segue.detail, sender: nil)
+        }
+        
         return lobbyCell
     }
     
 }
-

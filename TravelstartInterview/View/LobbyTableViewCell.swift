@@ -16,7 +16,7 @@ class LobbyTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    var count: Int = 0
+    var segueTrigger: (() -> Void)?
     
     var imageData = [String]() {
         
@@ -48,7 +48,6 @@ class LobbyTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-
 }
 
 extension LobbyTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -67,6 +66,11 @@ extension LobbyTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
         imageItem.layout(by: imageData[indexPath.row])
         
         return imageItem
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        segueTrigger?()
     }
     
 }

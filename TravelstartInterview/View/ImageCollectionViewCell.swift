@@ -15,6 +15,5 @@ class ImageCollectionViewCell: UICollectionViewCell {
     func layout(by data: String) {
         
         spotImage.loadImage(data)
-        
     }
 }

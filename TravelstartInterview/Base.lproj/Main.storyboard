@@ -133,14 +133,35 @@
                             <outlet property="lobbyTableView" destination="vUc-dM-PnC" id="TNh-DM-vk3"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="台北市熱門景點" id="HX1-Bg-yym"/>
+                    <navigationItem key="navigationItem" title="台北市熱門景點" id="HX1-Bg-yym">
+                        <barButtonItem key="backBarButtonItem" title="    " id="Uf4-Gs-JPQ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="lobbyView" destination="8bC-Xf-vdC" id="zbi-bA-Ive"/>
+                        <segue destination="WEB-Zh-xJO" kind="show" identifier="showDetail" id="1Tc-dk-IN4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.2" y="133.5832083958021"/>
+            <point key="canvasLocation" x="913" y="134"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="2wK-nL-tKP">
+            <objects>
+                <viewController id="WEB-Zh-xJO" customClass="DetailViewController" customModule="TravelstartInterview" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nvm-7v-PSe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="CRC-03-Typ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wYJ-vb-ImQ">
+                        <barButtonItem key="backBarButtonItem" title="   " id="EFD-3l-PXi"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KA5-Gd-z5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1840" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O0A-Nn-HtO">
@@ -166,4 +187,5 @@
             <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
