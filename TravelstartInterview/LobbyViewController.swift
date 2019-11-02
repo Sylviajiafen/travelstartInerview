@@ -72,7 +72,7 @@ extension LobbyViewController: LobbyViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LobbyTableViewCell.self), for: indexPath)
         
-        guard let lobbyCell = cell as? LobbyTableViewCell else { return UITableViewCell() }
+        guard let lobbyCell = cell as? LobbyTableViewCell else { return cell }
         
         lobbyCell.layout(by: datas[indexPath.row])
         

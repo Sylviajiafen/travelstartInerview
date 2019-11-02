@@ -16,13 +16,16 @@ class LobbyTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
+    var count: Int = 0
+    
     var imageData = [String]() {
         
         didSet {
             
-            print("=========check image url: \(imageData.count)========")
+            imageCollectionView.reloadData()
             
-            print(imageData)
+            imageCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
+                                             at: .left, animated: false)
         }
     }
     
@@ -59,10 +62,7 @@ extension LobbyTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
         
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCollectionViewCell.self), for: indexPath)
         
-        guard let imageItem = item as? ImageCollectionViewCell else { return UICollectionViewCell() }
-        
-        print("====image data=====")
-        print(imageData[indexPath.row])
+        guard let imageItem = item as? ImageCollectionViewCell else { return item }
         
         imageItem.layout(by: imageData[indexPath.row])
         
