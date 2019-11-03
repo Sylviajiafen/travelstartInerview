@@ -17,7 +17,15 @@ protocol LobbyViewDelegate: AnyObject, UITableViewDelegate, UITableViewDataSourc
 
 class LobbyView: UIView {
     
-    @IBOutlet weak var lobbyTableView: UITableView! 
+    @IBOutlet weak var lobbyTableView: UITableView! {
+        
+        didSet {
+            
+            lobbyTableView.delegate = self.delegate
+            
+            lobbyTableView.dataSource = self.delegate
+        }
+    }
         
     weak var delegate: LobbyViewDelegate? {
         
@@ -34,10 +42,6 @@ class LobbyView: UIView {
             setUpTableView()
         }
     }
-    
-    override func awakeFromNib() {
-       super.awakeFromNib()
-   }
     
     func reloadData() {
         

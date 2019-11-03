@@ -12,6 +12,9 @@
 		03689FEF236CB9D2008748D4 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03689FEE236CB9D2008748D4 /* KingFisherWrapper.swift */; };
 		03689FF2236DD258008748D4 /* MJRefreshWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03689FF1236DD258008748D4 /* MJRefreshWrapper.swift */; };
 		03689FF8236ECECA008748D4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03689FF7236ECECA008748D4 /* DetailView.swift */; };
+		03689FFA236ED3D1008748D4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03689FF9236ED3D1008748D4 /* UIViewController+Extension.swift */; };
+		03689FFC236ED801008748D4 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03689FFB236ED801008748D4 /* DetailTableViewCell.swift */; };
+		03689FFE236EEFDD008748D4 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03689FFD236EEFDD008748D4 /* DetailTableView.swift */; };
 		037C867B23691FDE0095AF57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C867A23691FDE0095AF57 /* AppDelegate.swift */; };
 		037C867D23691FDE0095AF57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C867C23691FDE0095AF57 /* SceneDelegate.swift */; };
 		037C868223691FDE0095AF57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 037C868023691FDE0095AF57 /* Main.storyboard */; };
@@ -46,6 +49,9 @@
 		03689FEE236CB9D2008748D4 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		03689FF1236DD258008748D4 /* MJRefreshWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJRefreshWrapper.swift; sourceTree = "<group>"; };
 		03689FF7236ECECA008748D4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		03689FF9236ED3D1008748D4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		03689FFB236ED801008748D4 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		03689FFD236EEFDD008748D4 /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
 		037C867723691FDE0095AF57 /* TravelstartInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelstartInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		037C867A23691FDE0095AF57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		037C867C23691FDE0095AF57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				03689FF7236ECECA008748D4 /* DetailView.swift */,
+				03689FFB236ED801008748D4 /* DetailTableViewCell.swift */,
+				03689FFD236EEFDD008748D4 /* DetailTableView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -215,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				037C86A6236C1CE20095AF57 /* Bundle+Extension.swift */,
+				03689FF9236ED3D1008748D4 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -407,6 +416,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03689FFA236ED3D1008748D4 /* UIViewController+Extension.swift in Sources */,
+				03689FFC236ED801008748D4 /* DetailTableViewCell.swift in Sources */,
 				03689FF2236DD258008748D4 /* MJRefreshWrapper.swift in Sources */,
 				037C867B23691FDE0095AF57 /* AppDelegate.swift in Sources */,
 				03689FEB236C9F99008748D4 /* ImageCollectionViewCell.swift in Sources */,
@@ -417,6 +428,7 @@
 				037C86A52369303B0095AF57 /* HTTPClient.swift in Sources */,
 				037C86A9236C1FCF0095AF57 /* DataObject.swift in Sources */,
 				03689FED236CAEFC008748D4 /* FileSeparator.swift in Sources */,
+				03689FFE236EEFDD008748D4 /* DetailTableView.swift in Sources */,
 				03FF1867236C3A1C000E700C /* LobbyTableViewCell.swift in Sources */,
 				037C867D23691FDE0095AF57 /* SceneDelegate.swift in Sources */,
 				037C869D2369209C0095AF57 /* LobbyViewController.swift in Sources */,

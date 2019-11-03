@@ -84,6 +84,8 @@ class LobbyViewController: UIViewController {
             
             destination.navigationItem.title = currentTitle
             
+            destination.view.layoutIfNeeded()
+            
             destination.data = data
         }
     }
@@ -92,7 +94,6 @@ class LobbyViewController: UIViewController {
         
         static let detail = "showDetail"
     }
-    
 }
 
 extension LobbyViewController: LobbyViewDelegate {

@@ -86,7 +86,7 @@ extension LobbyTableViewCell: UICollectionViewDelegateFlowLayout {
         
         let width = (screenSize.width - 26) / 2.0
         
-        let height = width / 1.5
+        let height = width * 0.6
         
         return CGSize(width: width, height: height)
     }
