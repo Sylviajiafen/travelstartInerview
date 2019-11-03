@@ -26,34 +26,48 @@ class LobbyViewController: UIViewController {
         }
     }
     
+    var data: Results?
+    
     var currentTitle: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    func fetchData() {
+    func fetchData(isTheEnd: ((Bool) -> Void)?) {
         
-        DataManager.shared.fetchData { [weak self] (result) in
+        if datas.count < DataManager.dataTotal {
             
-            switch result {
+            DataManager.shared.fetchData { [weak self] (result) in
                 
-            case .success(let result):
+                switch result {
+                    
+                case .success(let result):
+                    
+                    self?.datas.append(contentsOf: result.result.results)
+                    
+                    print("加好了：畫面 data count：\(self?.datas.count)")
+                    
+                case .failure(let error):
+               
+                    print(error.localizedDescription)
+                }
                 
-                print("======DATA==========")
-                print(result.result.results[0].info)
-                print(result.result.results[0].title)
-                print(result.result.results[0].description)
-                print(result.result.results[0].file)
-                
-                self?.datas = result.result.results
-                
-            case .failure(let error):
-                
-                print("=====ERROR!!!======")
-                print(error.localizedDescription)
+                print("加好後進 handler: not the end")
+                print("\(self?.datas.count) datas: \(self?.datas)")
+                    
+                isTheEnd?(false)
             }
+            
+        } else {
+            
+            print("未進加好： the end")
+            
+            isTheEnd?(true)
+            
+            return
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,6 +78,8 @@ class LobbyViewController: UIViewController {
                 as? DetailViewController else { return }
             
             destination.navigationItem.title = currentTitle
+            
+            destination.data = data
         }
     }
     
@@ -76,15 +92,33 @@ class LobbyViewController: UIViewController {
         
         static let detail = "showDetail"
     }
+    
 }
 
 extension LobbyViewController: LobbyViewDelegate {
     
     func triggerRefresh(_ view: LobbyView) {
         
-        fetchData()
+        fetchData(isTheEnd: nil)
     }
     
+    func loadMoreData(_ view: LobbyView) {
+        
+        HTTPClient.shared.loadNext()
+        
+        fetchData { isTheEnd in
+            
+            if !isTheEnd {
+                
+                view.endFooterRefreshing()
+                
+            } else {
+                
+                view.endWithNoMoreData()
+            }
+        }
+    }
+       
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return datas.count
@@ -105,6 +139,8 @@ extension LobbyViewController: LobbyViewDelegate {
             guard let strongSelf = self else { return }
             
             strongSelf.currentTitle = strongSelf.datas[indexPath.row].title
+            
+            strongSelf.data = strongSelf.datas[indexPath.row]
             
             strongSelf.performSegue(withIdentifier: Segue.detail, sender: nil)
         }

@@ -24,8 +24,11 @@ class LobbyTableViewCell: UITableViewCell {
             
             imageCollectionView.reloadData()
             
-            imageCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
-                                             at: .left, animated: false)
+            if imageData.count > 0 {
+                
+                imageCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
+                                                 at: .left, animated: false)
+            }
         }
     }
     

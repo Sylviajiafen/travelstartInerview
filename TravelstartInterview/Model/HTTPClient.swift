@@ -91,6 +91,8 @@ class HTTPClient {
     func loadNext() {
         
         offset += 10
+        
+        print("加好：offset now: \(offset)")
     }
     
     static var travelTaipei: HTTPRequest {

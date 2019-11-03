@@ -11,11 +11,13 @@ import UIKit
 protocol LobbyViewDelegate: AnyObject, UITableViewDelegate, UITableViewDataSource {
     
     func triggerRefresh(_ view: LobbyView)
+    
+    func loadMoreData(_ view: LobbyView)
 }
 
 class LobbyView: UIView {
     
-    @IBOutlet weak var lobbyTableView: UITableView!
+    @IBOutlet weak var lobbyTableView: UITableView! 
         
     weak var delegate: LobbyViewDelegate? {
         
@@ -28,6 +30,8 @@ class LobbyView: UIView {
             tableView.dataSource = self.delegate
             
             self.delegate?.triggerRefresh(self)
+            
+            setUpTableView()
         }
     }
     
@@ -41,6 +45,26 @@ class LobbyView: UIView {
             
             self?.lobbyTableView.reloadData()
         }
+    }
+    
+    private func setUpTableView() {
+        
+        lobbyTableView.addRefreshFooter { [weak self] in
+            
+            guard let strongSelf = self else { return }
+            
+            strongSelf.delegate?.loadMoreData(strongSelf)
+        }
+    }
+    
+    func endFooterRefreshing() {
+        
+        lobbyTableView.endFooterRefreshing()
+    }
+    
+    func endWithNoMoreData() {
+        
+        lobbyTableView.endWithNoMoreData()
     }
 
 }

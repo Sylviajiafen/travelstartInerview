@@ -22,7 +22,7 @@ class FileSeparator {
         
         let reorderedUrls: [String] = separatedUrls.compactMap { [weak self] (url) -> String? in
                
-            if url.contains("jpg") || url.contains("JPG") {
+            if url.contains(".jpg") || url.contains(".JPG") || url.contains(".png"){
                    
                 guard let strongSelf = self else { return nil }
                 

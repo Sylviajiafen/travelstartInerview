@@ -8,6 +8,7 @@ target 'TravelstartInterview' do
   # Pods for TravelstartInterview
   
   pod 'Kingfisher'
+  pod 'MJRefresh'
 
   target 'TravelstartInterviewTests' do
     inherit! :search_paths

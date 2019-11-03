@@ -15,12 +15,14 @@ struct FetchResults: Codable {
 
 struct FetchResult: Codable {
     
+    let count: Int
+    
     let results: [Results]
 }
 
 struct Results: Codable {
     
-    let info: String
+    let info: String?
     
     let title: String
     
@@ -30,9 +32,9 @@ struct Results: Codable {
     
     let file: String
     
-    let mrt: String
+    let mrt: String?
     
-    let time: String
+    let time: String?
     
     enum CodingKeys: String, CodingKey {
         

@@ -10,6 +10,14 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var data: Results? {
+        
+        didSet {
+            
+            print("Data: \(data)")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

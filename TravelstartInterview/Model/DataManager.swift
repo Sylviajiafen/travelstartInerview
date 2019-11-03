@@ -19,6 +19,8 @@ class DataManager {
     
     static let shared = DataManager()
     
+    static var dataTotal: Int = 1
+    
     private init() {}
 
     func fetchData(completion: @escaping ((Result<FetchResults, FetchError>) -> Void)) {
@@ -33,12 +35,17 @@ class DataManager {
                     
                     let dataObject = try JSONDecoder().decode(FetchResults.self, from: data)
                     
+                    DataManager.dataTotal = dataObject.result.count
+                    
+                    print("加好：total Count: \(DataManager.dataTotal)")
+                    
                     completion(.success(dataObject))
                     
                 } catch {
                     
                     completion(.failure(.decodeError))
                     print("DECODE ERR")
+                    print(error)
                 }
                 
                 
