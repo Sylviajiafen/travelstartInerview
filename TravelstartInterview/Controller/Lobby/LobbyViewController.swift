@@ -18,6 +18,15 @@ class LobbyViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationItem.title = "台北市熱門景點"
+    }
+    
     var datas = [Results]() {
         
         didSet {
@@ -29,10 +38,6 @@ class LobbyViewController: UIViewController {
     var data: Results?
     
     var currentTitle: String = ""
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     func fetchData(isTheEnd: ((Bool) -> Void)?) {
         
@@ -46,22 +51,22 @@ class LobbyViewController: UIViewController {
                     
                     self?.datas.append(contentsOf: result.result.results)
                     
-                    print("加好了：畫面 data count：\(self?.datas.count)")
+//                    print("加好了：畫面 data count：\(self?.datas.count)")
                     
                 case .failure(let error):
                
                     print(error.localizedDescription)
                 }
                 
-                print("加好後進 handler: not the end")
-                print("\(self?.datas.count) datas: \(self?.datas)")
+//                print("加好後進 handler: not the end")
+//                print("\(self?.datas.count) datas: \(self?.datas)")
                     
                 isTheEnd?(false)
             }
             
         } else {
             
-            print("未進加好： the end")
+//            print("未進加好： the end")
             
             isTheEnd?(true)
             
@@ -81,11 +86,6 @@ class LobbyViewController: UIViewController {
             
             destination.data = data
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        self.navigationItem.title = "台北市熱門景點"
     }
     
     private struct Segue {
@@ -119,12 +119,16 @@ extension LobbyViewController: LobbyViewDelegate {
         }
     }
        
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int
+    ) -> Int {
         
         return datas.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LobbyTableViewCell.self), for: indexPath)
         
@@ -132,7 +136,7 @@ extension LobbyViewController: LobbyViewDelegate {
         
         lobbyCell.layout(by: datas[indexPath.row])
         
-        lobbyCell.imageData = FileSeparator.shared.reorder(datas[indexPath.row].file)
+        lobbyCell.imageData = FileSeparator.shared.filter(datas[indexPath.row].file)
         
         lobbyCell.segueTrigger = { [weak self] in
             

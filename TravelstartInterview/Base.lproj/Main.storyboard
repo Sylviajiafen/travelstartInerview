@@ -149,7 +149,7 @@
         <scene sceneID="2wK-nL-tKP">
             <objects>
                 <viewController id="WEB-Zh-xJO" customClass="DetailViewController" customModule="TravelstartInterview" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Nvm-7v-PSe">
+                    <view key="view" contentMode="scaleToFill" id="Nvm-7v-PSe" customClass="DetailView" customModule="TravelstartInterview" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

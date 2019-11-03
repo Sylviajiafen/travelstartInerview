@@ -16,11 +16,11 @@ class FileSeparator {
     
     private let separatorCharacter: String = "http://"
     
-    func reorder(_ string: String) -> [String] {
+    func filter(_ string: String) -> [String] {
         
         let separatedUrls = string.components(separatedBy: separatorCharacter)
         
-        let reorderedUrls: [String] = separatedUrls.compactMap { [weak self] (url) -> String? in
+        let filteredUrls: [String] = separatedUrls.compactMap { [weak self] url -> String? in
                
             if url.contains(".jpg") || url.contains(".JPG") || url.contains(".png"){
                    
@@ -34,6 +34,6 @@ class FileSeparator {
             }
         }
            
-        return reorderedUrls
+        return filteredUrls
     }
 }
