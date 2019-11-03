@@ -47,11 +47,11 @@ class FileSeparator {
         
         dataArr.append(CellData(title: "景點位置", content: data.address))
         
-        dataArr.append(CellData(title: "交通資訊", content: data.info ?? ""))
+        dataArr.append(CellData(title: "交通資訊", content: data.info ?? "（無資訊）"))
         
-        dataArr.append(CellData(title: "附近捷運", content: data.mrt ?? ""))
+        dataArr.append(CellData(title: "附近捷運", content: data.mrt ?? "（無資訊）"))
         
-        dataArr.append(CellData(title: "開放時間", content: data.time ?? ""))
+        dataArr.append(CellData(title: "開放時間", content: data.time ?? "（無資訊）"))
         
         return dataArr
     }
@@ -63,5 +63,3 @@ struct CellData {
     
     let content: String
 }
-
-//let titles: [String] = ["景點名稱", "景點介紹", "景點位置", "交通資訊", "附近捷運", "開放時間"]
