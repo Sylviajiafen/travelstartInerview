@@ -39,10 +39,14 @@ class DetailViewController: UIViewController {
         didSet {
             
             showImage?()
+            
+            pageSetter?()
         }
     }
     
     var showImage: (() -> Void)?
+    
+    var pageSetter: (() -> Void)?
     
     func setImageOn(_ scrollView: UIScrollView) {
         
@@ -94,6 +98,18 @@ extension DetailViewController: DetailViewDelegate {
         }
     }
     
+    func setUpPageControl(_ view: DetailView) {
+        
+        pageSetter = { [weak self] in
+            
+            guard let strongSelf = self else { return }
+            
+            view.pageControl.numberOfPages = strongSelf.imageData.count
+            
+            view.pageControl.currentPage = 0
+        }
+    }
+    
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int
     ) -> Int {
@@ -114,4 +130,11 @@ extension DetailViewController: DetailViewDelegate {
         return detailCell
     }
 
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        let currentPageNum =
+            Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        
+        detailView.pageControl.currentPage = currentPageNum
+    }
 }
