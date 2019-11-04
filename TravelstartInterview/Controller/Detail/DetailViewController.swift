@@ -104,9 +104,16 @@ extension DetailViewController: DetailViewDelegate {
             
             guard let strongSelf = self else { return }
             
-            view.pageControl.numberOfPages = strongSelf.imageData.count
+            if strongSelf.imageData.count > 1 {
             
-            view.pageControl.currentPage = 0
+                view.pageControl.numberOfPages = strongSelf.imageData.count
+            
+                view.pageControl.currentPage = 0
+                
+            } else {
+                
+                view.pageControl.numberOfPages = 0
+            }
         }
     }
     
