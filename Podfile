@@ -9,7 +9,6 @@ target 'TravelstartInterview' do
   
   pod 'Kingfisher'
   pod 'MJRefresh'
-  pod 'ReachabilitySwift'
 
   target 'TravelstartInterviewTests' do
     inherit! :search_paths

@@ -26,6 +26,7 @@ class DetailView: UIView {
             detailTableView.dataSource = self.delegate
             
             detailTableView.reloadData()
+            
         }
     }
     
@@ -89,7 +90,7 @@ class DetailView: UIView {
     weak var delegate: DetailViewDelegate? {
         
         didSet {
-            
+                        
             guard let tableView = detailTableView else { return }
 
             tableView.dataSource = self.delegate
@@ -102,5 +103,6 @@ class DetailView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
 }

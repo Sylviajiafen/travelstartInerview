@@ -20,6 +20,8 @@ class LobbyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ReachabilityHelper.shared.checkNetWork()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,8 +77,6 @@ class LobbyViewController: UIViewController {
                 as? DetailViewController else { return }
             
             destination.navigationItem.title = currentTitle
-            
-            destination.view.layoutIfNeeded()
             
             destination.data = data
         }
