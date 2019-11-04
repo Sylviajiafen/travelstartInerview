@@ -48,7 +48,7 @@ class DetailViewController: UIViewController {
     
     var pageSetter: (() -> Void)?
     
-    func setImageOn(_ scrollView: UIScrollView) {
+    private func setImage(on scrollView: UIScrollView) {
         
         for index in imageData.indices {
             
@@ -94,7 +94,7 @@ extension DetailViewController: DetailViewDelegate {
                 CGSize(width: scrollWidth,
                        height: strongSelf.screenSize.width * 0.6 + 9)
             
-            strongSelf.setImageOn(view.headerScrollView)
+            strongSelf.setImage(on: view.headerScrollView)
         }
     }
     

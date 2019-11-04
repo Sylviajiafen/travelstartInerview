@@ -39,7 +39,6 @@ class LobbyView: UIView {
             
             self.delegate?.triggerRefresh(self)
             
-//            setUpTableView()
         }
     }
     
@@ -63,16 +62,6 @@ class LobbyView: UIView {
             }
         }
     }
-    
-//    private func setUpTableView() {
-//
-//        lobbyTableView.addRefreshFooter { [weak self] in
-//
-//            guard let strongSelf = self else { return }
-//
-//            strongSelf.delegate?.loadMoreData(strongSelf)
-//        }
-//    }
     
     func endFooterRefreshing() {
         
