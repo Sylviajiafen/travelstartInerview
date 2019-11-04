@@ -14,10 +14,7 @@ class DetailViewController: UIViewController {
         
         didSet {
             
-            print("放了 ｄｅｌｅｇａｔｅ")
-            
             detailView.delegate = self
-            
         }
     }
     
@@ -40,8 +37,6 @@ class DetailViewController: UIViewController {
     var imageData = [String]() {
         
         didSet {
-            
-            print("image 好了: \(imageData)")
             
             showImage?()
         }
@@ -66,13 +61,8 @@ class DetailViewController: UIViewController {
             scrollImage.contentMode = .scaleAspectFill
             
             scrollImage.clipsToBounds = true
-            
-            print("scrollView: \(scrollView)")
-            
-            print("image: \(scrollImage)")
-            
+           
             scrollView.addSubview(scrollImage)
-
         }
     }
     

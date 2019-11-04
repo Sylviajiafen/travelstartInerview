@@ -39,7 +39,7 @@ class LobbyViewController: UIViewController {
     
     var currentTitle: String = ""
     
-    func fetchData(isTheEnd: ((Bool) -> Void)?) {
+    func fetchData(isTheEnd: @escaping ((Bool) -> Void)) {
         
         if datas.count < DataManager.dataTotal {
             
@@ -51,28 +51,20 @@ class LobbyViewController: UIViewController {
                     
                     self?.datas.append(contentsOf: result.result.results)
                     
-//                    print("加好了：畫面 data count：\(self?.datas.count)")
-                    
                 case .failure(let error):
                
                     print(error.localizedDescription)
                 }
-                
-//                print("加好後進 handler: not the end")
-//                print("\(self?.datas.count) datas: \(self?.datas)")
                     
-                isTheEnd?(false)
+                isTheEnd(false)
             }
             
         } else {
             
-//            print("未進加好： the end")
-            
-            isTheEnd?(true)
+            isTheEnd(true)
             
             return
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -99,8 +91,18 @@ class LobbyViewController: UIViewController {
 extension LobbyViewController: LobbyViewDelegate {
     
     func triggerRefresh(_ view: LobbyView) {
-        
-        fetchData(isTheEnd: nil)
+
+        fetchData { isTheEnd in
+            
+            if !isTheEnd {
+                
+                view.addFooterRefresh()
+                
+            } else {
+              
+                view.endWithNoMoreData()
+            }
+        }
     }
     
     func loadMoreData(_ view: LobbyView) {

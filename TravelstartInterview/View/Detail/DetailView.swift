@@ -19,8 +19,6 @@ class DetailView: UIView {
         
         didSet {
             
-            print("做好 tableView")
-            
             detailTableView.delegate = self.delegate
             
             detailTableView.dataSource = self.delegate
@@ -32,9 +30,7 @@ class DetailView: UIView {
     @IBOutlet weak var headerScrollView: UIScrollView! {
         
         didSet {
-            
-            print("做好 header: \(headerScrollView)")
-            
+          
             headerScrollView.delegate = self.delegate
             
             self.delegate?.setUpHeader(self)
@@ -48,21 +44,12 @@ class DetailView: UIView {
         didSet {
             
             guard let tableView = detailTableView else { return }
-            
+
             tableView.dataSource = self.delegate
-            
+
             tableView.delegate = self.delegate
-            
+
             tableView.reloadData()
-            
-        }
-    }
-    
-    func reloadData() {
-        
-        DispatchQueue.main.async { [weak self] in
-            
-            self?.detailTableView.reloadData()
         }
     }
     

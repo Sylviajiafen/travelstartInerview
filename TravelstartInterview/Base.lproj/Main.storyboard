@@ -184,6 +184,11 @@
                                     <viewLayoutGuide key="contentLayoutGuide" id="A97-bh-GuC"/>
                                     <viewLayoutGuide key="frameLayoutGuide" id="pCv-eW-3Aq"/>
                                 </scrollView>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="GTd-Ny-g9B">
+                                    <rect key="frame" x="0.0" y="645" width="375" height="12"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailTableViewCell" rowHeight="272" id="lcL-tc-Udw" customClass="DetailTableViewCell" customModule="TravelstartInterview" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="345" width="375" height="272"/>
