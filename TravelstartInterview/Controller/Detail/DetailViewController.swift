@@ -30,10 +30,51 @@ class DetailViewController: UIViewController {
             guard let data = data else { return }
             
             cellData = FileSeparator.shared.detailCellData(from: data)
+            
+            imageData = FileSeparator.shared.filterImage(data.file)
         }
     }
     
     var cellData = [CellData]()
+    
+    var imageData = [String]() {
+        
+        didSet {
+            
+            print("image 好了: \(imageData)")
+            
+            showImage?()
+        }
+    }
+    
+    var showImage: (() -> Void)?
+    
+    func setImageOn(_ scrollView: UIScrollView) {
+        
+        for index in imageData.indices {
+            
+            let scrollImage = UIImageView()
+            
+            scrollImage.frame =
+                CGRect(x: screenSize.width * CGFloat(index),
+                       y: 0,
+                       width: screenSize.width,
+                       height: screenSize.width * 0.6)
+            
+            scrollImage.loadImage(imageData[index])
+            
+            scrollImage.contentMode = .scaleAspectFill
+            
+            scrollImage.clipsToBounds = true
+            
+            print("scrollView: \(scrollView)")
+            
+            print("image: \(scrollImage)")
+            
+            scrollView.addSubview(scrollImage)
+
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +86,23 @@ extension DetailViewController: DetailViewDelegate {
     
     func setUpHeader(_ view: DetailView) {
         
-//        view.headerImageScrollView.frame.size.height = screenSize.width * 0.6
+        view.headerScrollView.bounds.size.width = screenSize.width
+        
+        view.headerScrollView.bounds.size.height = screenSize.width * 0.6 + 9
+        
+        showImage = { [weak self] in
+            
+            guard let strongSelf = self else { return }
+            
+            let scrollWidth = strongSelf.screenSize.width * CGFloat(strongSelf.imageData.count)
+            
+            view.headerScrollView.contentSize =
+                CGSize(width: scrollWidth,
+                       height: strongSelf.screenSize.width * 0.6 + 9)
+            
+            strongSelf.setImageOn(view.headerScrollView)
+        }
     }
-    
     
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int
@@ -63,13 +118,6 @@ extension DetailViewController: DetailViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailTableViewCell.self), for: indexPath)
         
         guard let detailCell = cell as? DetailTableViewCell else { return cell }
-        
-//        if let detailData = data {
-//
-//            print("index: \(indexPath.row)")
-//
-//            detailCell.layout(at: indexPath.row, by: detailData)
-//        }
         
         detailCell.layout(by: cellData[indexPath.row])
         

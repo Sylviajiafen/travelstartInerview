@@ -137,7 +137,7 @@ extension LobbyViewController: LobbyViewDelegate {
         
         lobbyCell.layout(by: datas[indexPath.row])
         
-        lobbyCell.imageData = FileSeparator.shared.filter(datas[indexPath.row].file)
+        lobbyCell.imageData = FileSeparator.shared.filterImage(datas[indexPath.row].file)
         
         lobbyCell.segueTrigger = { [weak self] in
             

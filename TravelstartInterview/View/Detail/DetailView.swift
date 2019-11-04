@@ -13,7 +13,7 @@ protocol DetailViewDelegate: AnyObject, UITableViewDataSource, UITableViewDelega
     func setUpHeader(_ view: DetailView)
 }
 
-class DetailView: UIView, UIScrollViewDelegate {
+class DetailView: UIView {
 
     @IBOutlet weak var detailTableView: UITableView! {
         
@@ -29,40 +29,32 @@ class DetailView: UIView, UIScrollViewDelegate {
         }
     }
     
-//    @IBOutlet weak var headerImageScrollView: UIScrollView! {
-//
-//        didSet {
-//
-//            print("做好 header")
-//
-//            headerImageScrollView.delegate = self
-//
-//            setUpScrollView()
-//        }
-//    }
+    @IBOutlet weak var headerScrollView: UIScrollView! {
+        
+        didSet {
+            
+            print("做好 header: \(headerScrollView)")
+            
+            headerScrollView.delegate = self.delegate
+            
+            self.delegate?.setUpHeader(self)
+        }
+    }
+    
+
     
     weak var delegate: DetailViewDelegate? {
         
         didSet {
             
-            print("進 ｄｅｌｅｇａｔｅ didSet")
-            
-            guard let tableView = detailTableView
-//                ,
-//                let scrollView = headerImageScrollView
-                else {
-                    print("找不到")
-                    return }
+            guard let tableView = detailTableView else { return }
             
             tableView.dataSource = self.delegate
             
             tableView.delegate = self.delegate
             
-            print("找到 ｄｅｌｅｇａｔｅ")
-            
             tableView.reloadData()
             
-//            scrollView.delegate = self.delegate
         }
     }
     
@@ -72,14 +64,6 @@ class DetailView: UIView, UIScrollViewDelegate {
             
             self?.detailTableView.reloadData()
         }
-    }
-    
-    private func setUpScrollView() {
-        
-        let screenWidth = UIScreen.main.bounds.size.width
-        
-//        headerImageScrollView.frame.size.height = screenWidth * 0.6
-        
     }
     
     override func awakeFromNib() {
