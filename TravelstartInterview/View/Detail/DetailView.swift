@@ -44,13 +44,7 @@ class DetailView: UIView {
         }
     }
         
-    var pageControl = UIPageControl() {
-        
-        didSet {
-            
-            print("pageControl didSet")
-        }
-    }
+    var pageControl = UIPageControl()
     
     private func setPageControlPosition()  {
         

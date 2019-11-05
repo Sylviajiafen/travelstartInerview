@@ -48,16 +48,12 @@ class LobbyViewController: UIViewController {
             switch connection {
 
             case .connected:
-
-                print("connected")
                 
                 result(true)
 
             case .unconnected:
-
-                print(connection.rawValue)
                 
-                self?.showAlertOfNetworkIssue()
+                self?.showAlertOf(issue: .notConnected, title: .notConnected)
 
                 result(false)
             }
@@ -78,9 +74,9 @@ class LobbyViewController: UIViewController {
 
                     self?.datas.append(contentsOf: result.result.results)
 
-                case .failure(let error):
+                case .failure(_):
 
-                    print(error.localizedDescription)
+                    self?.showAlertOf(issue: .fetchDataError, title: .fetchDataError)
                 }
                 
                 isTheEnd(false)

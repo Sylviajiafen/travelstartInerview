@@ -37,23 +37,16 @@ class DataManager {
                     
                     DataManager.dataTotal = dataObject.result.count
                     
-                    print("加好：total Count: \(DataManager.dataTotal)")
-                    
                     completion(.success(dataObject))
                     
                 } catch {
                     
                     completion(.failure(.decodeError))
-                    print("DECODE ERR")
-                    print(error)
                 }
-                
                 
             case .failure( _):
                 
                 completion(.failure(.cannotFetch))
-                
-                print("CANNOT FETCH")
             }
         }
     }

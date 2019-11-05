@@ -15,7 +15,7 @@ class NetworkHelper {
     
     func startMonitor(handler: @escaping (ConnectionStatus) -> Void) {
         
-        monitor.pathUpdateHandler = { [weak self] path in
+        monitor.pathUpdateHandler = { path in
             
             if path.status == .satisfied {
                 

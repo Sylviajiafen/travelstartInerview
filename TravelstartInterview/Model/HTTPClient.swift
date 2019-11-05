@@ -63,8 +63,6 @@ struct HTTPRequest {
             
         guard let url = urlComponents.url else { return nil }
         
-        print("API URL: \(url)")
-        
         return URLRequest(url: url)
     }
 }
@@ -91,8 +89,6 @@ class HTTPClient {
     func loadNext() {
         
         offset += 10
-        
-        print("加好：offset now: \(offset)")
     }
     
     static var travelTaipei: HTTPRequest {
@@ -119,8 +115,6 @@ class HTTPClient {
                 if let response = response as? HTTPURLResponse {
                 
                     let statusCode = response.statusCode
-                
-                    print("status: \(statusCode)")
                     
                     switch statusCode {
                     

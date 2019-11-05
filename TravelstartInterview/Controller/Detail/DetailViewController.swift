@@ -23,7 +23,6 @@ class DetailViewController: UIViewController {
         didSet {
             
             self.view.layoutIfNeeded()
-//            print("data: \(data)")
             
             guard let data = data else { return }
             
@@ -74,7 +73,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
 }
 
 extension DetailViewController: DetailViewDelegate {
@@ -144,7 +142,5 @@ extension DetailViewController: DetailViewDelegate {
             Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         
         detailView.pageControl.currentPage = currentPageNum
-    
-    }
-    
+    }    
 }
