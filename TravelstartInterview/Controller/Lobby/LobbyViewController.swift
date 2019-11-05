@@ -13,15 +13,13 @@ class LobbyViewController: UIViewController {
     @IBOutlet var lobbyView: LobbyView! {
         
         didSet {
-            
+
             lobbyView.delegate = self
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ReachabilityHelper.shared.checkNetWork()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,31 +38,58 @@ class LobbyViewController: UIViewController {
     var data: Results?
     
     var currentTitle: String = ""
-    
-    func fetchData(isTheEnd: @escaping ((Bool) -> Void)) {
+
+    private func checkConnection(result: @escaping (Bool) -> Void) {
         
-        if datas.count < DataManager.dataTotal {
-            
-            DataManager.shared.fetchData { [weak self] (result) in
+        let networkHelper = NetworkHelper()
+
+        networkHelper.startMonitor { [weak self] connection in
+
+            switch connection {
+
+            case .connected:
+
+                print("connected")
                 
-                switch result {
-                    
-                case .success(let result):
-                    
-                    self?.datas.append(contentsOf: result.result.results)
-                    
-                case .failure(let error):
-               
-                    print(error.localizedDescription)
-                }
-                    
-                isTheEnd(false)
+                result(true)
+
+            case .unconnected:
+
+                print(connection.rawValue)
+                
+                self?.showAlertOfNetworkIssue()
+
+                result(false)
             }
             
+            networkHelper.stopMonitor()
+        }
+    }
+    
+    func fetchData(isTheEnd: @escaping ((Bool) -> Void)) {
+
+        if datas.count < DataManager.dataTotal {
+
+            DataManager.shared.fetchData { [weak self] (result) in
+
+                switch result {
+
+                case .success(let result):
+
+                    self?.datas.append(contentsOf: result.result.results)
+
+                case .failure(let error):
+
+                    print(error.localizedDescription)
+                }
+                
+                isTheEnd(false)
+            }
+                
         } else {
-            
+
             isTheEnd(true)
-            
+
             return
         }
     }
@@ -90,34 +115,66 @@ class LobbyViewController: UIViewController {
 
 extension LobbyViewController: LobbyViewDelegate {
     
-    func triggerRefresh(_ view: LobbyView) {
-
-        fetchData { isTheEnd in
+    var hasFetched: Bool {
+        
+        if datas.count == 0 {
             
-            if !isTheEnd {
+            return false
+            
+        } else {
+            
+            return true
+        }
+    }
+    
+    func triggerRefresh(_ view: LobbyView) {
+        
+        checkConnection { [weak self] (isConnected) in
+            
+            if isConnected {
+                
+                self?.fetchData { isTheEnd in
+                        
+                    if !isTheEnd {
+                            
+                        view.addFooterRefresh()
+                            
+                    } else {
+                          
+                        view.endWithNoMoreData()
+                    }
+                }
+
+            } else {
                 
                 view.addFooterRefresh()
-                
-            } else {
-              
-                view.endWithNoMoreData()
             }
         }
     }
     
     func loadMoreData(_ view: LobbyView) {
         
-        HTTPClient.shared.loadNext()
-        
-        fetchData { isTheEnd in
+        checkConnection { [weak self] isConnected in
             
-            if !isTheEnd {
+            if isConnected {
                 
-                view.endFooterRefreshing()
+                HTTPClient.shared.loadNext()
+                           
+                self?.fetchData { isTheEnd in
+                               
+                    if !isTheEnd {
+                                   
+                        view.endFooterRefreshing()
+                                   
+                    } else {
+                                   
+                        view.endWithNoMoreData()
+                    }
+                }
                 
             } else {
                 
-                view.endWithNoMoreData()
+                view.endFooterRefreshing()
             }
         }
     }

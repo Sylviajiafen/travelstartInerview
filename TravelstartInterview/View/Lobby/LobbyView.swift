@@ -13,6 +13,8 @@ protocol LobbyViewDelegate: AnyObject, UITableViewDelegate, UITableViewDataSourc
     func triggerRefresh(_ view: LobbyView)
     
     func loadMoreData(_ view: LobbyView)
+    
+    var hasFetched: Bool { get }
 }
 
 class LobbyView: UIView {
@@ -57,8 +59,15 @@ class LobbyView: UIView {
             self?.lobbyTableView.addRefreshFooter { [weak self] in
         
                 guard let strongSelf = self else { return }
-        
-                strongSelf.delegate?.loadMoreData(strongSelf)
+                
+                if strongSelf.delegate?.hasFetched ?? false {
+                    
+                    strongSelf.delegate?.loadMoreData(strongSelf)
+                    
+                } else {
+                    
+                    strongSelf.delegate?.triggerRefresh(strongSelf)
+                }
             }
         }
     }
