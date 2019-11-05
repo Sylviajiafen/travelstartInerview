@@ -74,9 +74,28 @@ class LobbyViewController: UIViewController {
 
                     self?.datas.append(contentsOf: result.result.results)
 
-                case .failure(_):
-
-                    self?.showAlertOf(issue: .fetchDataError, title: .fetchDataError)
+                case .failure(let error):
+                    
+                    switch error {
+                        
+                    case .cannotFetch(let status):
+                        
+                        self?.showAlertOf(issue: .fetchDataError,
+                        title: .fetchDataError,
+                        addition: "(\(status))")
+                        
+                    case .decodeError:
+                        
+                        self?.showAlertOf(issue: .fetchDataError,
+                        title: .fetchDataError,
+                        addition: "(無法解析資料)")
+                        
+                    case .unexpectedError:
+                        
+                        self?.showAlertOf(issue: .fetchDataError,
+                        title: .fetchDataError,
+                        addition: "(未知的錯誤)")
+                    }
                 }
                 
                 isTheEnd(false)

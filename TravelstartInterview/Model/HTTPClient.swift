@@ -9,12 +9,10 @@
 import Foundation
 
 enum HTTPRequestError: Error {
+
+    case serverError(Int)
     
-    case decodeDataError
-    
-    case serverError
-    
-    case clientError
+    case clientError(Int)
     
     case unexpectedError
 }
@@ -126,11 +124,11 @@ class HTTPClient {
                     
                     case 400..<500:
                     
-                        completion(.failure(.clientError))
+                        completion(.failure(.clientError(statusCode)))
                     
                     case 500..<600:
                     
-                        completion(.failure(.serverError))
+                        completion(.failure(.serverError(statusCode)))
                     
                     default: return
                 }

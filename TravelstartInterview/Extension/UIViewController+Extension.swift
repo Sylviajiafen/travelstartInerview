@@ -12,17 +12,19 @@ extension UIViewController {
     
     open var screenSize: CGSize { return UIScreen.main.bounds.size }
     
-    func showAlertOf(issue: AlertIssue, title: AlertTitle) {
-        
-        let alert = UIAlertController(title: title.rawValue,
-                                      message: issue.rawValue,
-                                      preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "OK", style: .cancel)
-        
-        alert.addAction(action)
+    func showAlertOf(issue: AlertIssue, title: AlertTitle, addition: String? = nil) {
         
         DispatchQueue.main.async { [weak self] in
+            
+            let message = issue.rawValue + (addition ?? "")
+            
+            let alert = UIAlertController(title: title.rawValue,
+                                          message: message,
+                                          preferredStyle: .alert)
+        
+            let action = UIAlertAction(title: "OK", style: .cancel)
+        
+            alert.addAction(action)
             
             self?.present(alert, animated: true, completion: nil)
         }

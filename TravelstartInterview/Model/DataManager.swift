@@ -12,7 +12,9 @@ enum FetchError: Error {
     
     case decodeError
     
-    case cannotFetch
+    case cannotFetch(Int)
+    
+    case unexpectedError
 }
 
 class DataManager {
@@ -44,9 +46,22 @@ class DataManager {
                     completion(.failure(.decodeError))
                 }
                 
-            case .failure( _):
+            case .failure(let error):
                 
-                completion(.failure(.cannotFetch))
+                switch error {
+                    
+                case .clientError(let statusCode):
+                    
+                    completion(.failure(.cannotFetch(statusCode)))
+                    
+                case .serverError(let statusCode):
+                    
+                    completion(.failure(.cannotFetch(statusCode)))
+                    
+                case .unexpectedError:
+                    
+                    completion(.failure(.unexpectedError))
+                }
             }
         }
     }
