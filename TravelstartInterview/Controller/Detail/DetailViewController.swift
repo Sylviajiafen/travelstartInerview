@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
         
         didSet {
             
-            self.view.layoutIfNeeded()
+            self.loadViewIfNeeded()
             
             guard let data = data else { return }
             
