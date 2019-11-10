@@ -66,7 +66,9 @@ extension LobbyTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
                         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         
-        let item = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCollectionViewCell.self), for: indexPath)
+        let item = collectionView.dequeueReusableCell(
+            withReuseIdentifier: String(describing: ImageCollectionViewCell.self),
+            for: indexPath)
         
         guard let imageItem = item as? ImageCollectionViewCell else { return item }
         
