@@ -55,12 +55,16 @@ class LobbyTableViewCell: UITableViewCell {
 
 extension LobbyTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int
+    ) -> Int {
         
         return imageData.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCollectionViewCell.self), for: indexPath)
         
@@ -71,7 +75,9 @@ extension LobbyTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
         return imageItem
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath
+    ) {
         
         segueTrigger?()
     }
@@ -80,7 +86,10 @@ extension LobbyTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
 
 extension LobbyTableViewCell: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         
         let screenSize = UIScreen.main.bounds.size
         
